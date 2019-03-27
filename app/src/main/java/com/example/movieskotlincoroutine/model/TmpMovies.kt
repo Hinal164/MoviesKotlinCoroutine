@@ -1,8 +1,9 @@
 package com.example.movieskotlincoroutine.model
 
-import java.util.ArrayList
 
-class TmpMovies {
-    var data: List<Movie> = ArrayList<Movie>()
-    var metadata: Metadata? = null
+class TmpMovies{
+
+     var data: List<Movie>?= null
+     var metadata: Metadata? =null
+
 }

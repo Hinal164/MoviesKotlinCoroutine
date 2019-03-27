@@ -3,16 +3,20 @@ package com.example.movieskotlincoroutine
 import io.reactivex.annotations.NonNull
 import io.reactivex.annotations.Nullable
 
-class Resource<T>(var status: Status, private var data: T, private var message: String?) {
+class Resource<T> private constructor(
+    @param:NonNull @field:NonNull
+    val currentState: Status,
+    @param:Nullable @field:Nullable
+    val data: T,
+    @param:Nullable @field:Nullable
+    val message: String?) {
 
-        fun getCurrentState(): Status {
+    enum class Status {
+        SUCCESS, ERROR, LOADING
+    }
 
-            return status
-        }
 
-        fun getMovieData(): T {
-            return data
-        }
+    companion object {
 
         fun <T> success(@NonNull data: T): Resource<T> {
             return Resource(Status.SUCCESS, data, null)
@@ -22,12 +26,8 @@ class Resource<T>(var status: Status, private var data: T, private var message: 
             return Resource(Status.ERROR, data, message)
         }
 
-
-        fun <T> loading(@Nullable data: T): Resource<T>? {
+        fun <T> loading(@Nullable data: T): Resource<T> {
             return Resource(Status.LOADING, data, null)
         }
-
-    enum class Status {
-        SUCCESS, ERROR, LOADING
     }
 }

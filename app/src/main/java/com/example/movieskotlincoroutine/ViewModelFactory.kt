@@ -2,9 +2,6 @@ package com.example.movieskotlincoroutine
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import android.arch.persistence.room.Room
-import android.support.v7.app.AppCompatActivity
-import com.example.movieskotlincoroutine.database.MovieDatabase
 import javax.inject.Inject
 import javax.inject.Provider
 import javax.inject.Singleton

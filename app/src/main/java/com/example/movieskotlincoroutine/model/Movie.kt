@@ -2,28 +2,21 @@ package com.example.movieskotlincoroutine.model
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
+import android.arch.persistence.room.TypeConverters
 
 @Entity
 data class Movie (
     @field:PrimaryKey
     var id: Int,
     var title: String,
-    var poster: String
-   /* var year: String,
+    var poster: String,
+    var year: String,
     var country: String,
     var imdb_rating: String,
+    @TypeConverters(Converters::class)
     var genres: List<String>,
-    var images:List<String>,
-    var rated: String,
-    var released: String,
-    var runtime: String,
-    var director: String,
-    var writer: String,
-    var actors: String,
-    var plot: String,
-    var awards: String,
-    var metascore: String,
-    var imdb_votes: String,
-    var imdb_id: String,
-    var type: String*/
+    @TypeConverters(Converters::class)
+    var images:List<String>
+
+
 )

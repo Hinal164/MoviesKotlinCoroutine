@@ -4,7 +4,8 @@ import android.app.Application
 import android.arch.persistence.room.Room
 import com.example.movieskotlincoroutine.ApiConstants
 import com.example.movieskotlincoroutine.database.MovieDao
-import com.example.movieskotlincoroutine.database.MovieDatabase
+import com.example.movieskotlincoroutine.database.UserDao
+import com.example.movieskotlincoroutine.database.UserDatabase
 import com.example.movieskotlincoroutine.network.Webservice
 import dagger.Module
 import dagger.Provides
@@ -41,13 +42,13 @@ class AppModule {
 
     @Provides
     @Singleton
-    internal fun provideMovieDatabase(application: Application): MovieDatabase {
-        return Room.databaseBuilder(application, MovieDatabase::class.java, "movie.db").build()
+    internal fun provideMovieDatabase(application: Application): UserDatabase {
+        return Room.databaseBuilder(application, UserDatabase::class.java, "users.db").build()
     }
 
     @Provides
     @Singleton
-    internal fun provideMovieDao(movieDatabase: MovieDatabase): MovieDao {
-        return movieDatabase.movieDao()
+    internal fun provideMovieDao(userDatabase: UserDatabase): UserDao {
+        return userDatabase.userDao()
     }
 }
