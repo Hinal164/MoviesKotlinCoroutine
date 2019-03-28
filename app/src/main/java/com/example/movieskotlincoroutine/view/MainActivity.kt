@@ -16,7 +16,7 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
 
     private var viewModel: UserListViewModel? = null
-    private var users: MutableList<User>? =null
+    private var users: MutableList<User> = arrayListOf()
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -32,19 +32,17 @@ class MainActivity : AppCompatActivity() {
         viewModel!!.getMovieList()!!.observe(this,
             Observer<Resource<List<User>>> { resource ->
 
-                when (resource?.currentState) {
+                when (resource!!.currentState) {
                     Resource.Status.LOADING -> {
                         val movieList = resource.data
                         if (movieList != null) {
-                            users!!.addAll(movieList)
+                            users.addAll(movieList)
                             println(users)
-                            //adapter.notifyDataSetChanged()
                         }
                     }
                     Resource.Status.SUCCESS -> {
-                        users!!.addAll(resource.data)
-                        Log.d("list",""+users)
-                        // adapter.notifyDataSetChanged()
+                        users.addAll(resource.data)
+                        Log.d("userList",""+users)
                     }
                     Resource.Status.ERROR -> {
                         println("Error while retrieving the data")

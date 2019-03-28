@@ -2,10 +2,7 @@ package com.example.movieskotlincoroutine
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MediatorLiveData
-import com.example.movieskotlincoroutine.database.MovieDao
 import com.example.movieskotlincoroutine.database.UserDao
-import com.example.movieskotlincoroutine.model.Movie
-import com.example.movieskotlincoroutine.model.TmpMovies
 import com.example.movieskotlincoroutine.model.User
 import com.example.movieskotlincoroutine.network.Webservice
 import retrofit2.Call

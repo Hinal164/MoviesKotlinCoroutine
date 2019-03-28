@@ -10,12 +10,12 @@ import com.example.movieskotlincoroutine.model.User
 @Dao
 interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-     fun save(users: List<User>)
+    fun save(users: List<User>)
 
     @Query("SELECT * FROM users WHERE id = :id")
-     fun load(id: Int): LiveData<User>
+    fun load(id: Int): LiveData<User>
 
 
     @Query("SELECT * FROM users ")
-     fun loadUsers(): LiveData<List<User>>
+    fun loadUsers(): LiveData<List<User>>
 }

@@ -7,20 +7,16 @@ import android.os.AsyncTask
 import android.support.annotation.MainThread
 import android.support.annotation.NonNull
 import android.support.annotation.WorkerThread
-import com.example.movieskotlincoroutine.model.TmpMovies
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 abstract class NetworkBoundResource<T, V> {
 
-    // lateinit var result: MediatorLiveData<Resource<T>>
     private var result: MediatorLiveData<Resource<T>> = MediatorLiveData()
 
     @MainThread
     constructor() {
-
-        // result.setValue(Resource.loading(null))
 
         // Always load the data from DB intially so that we have
         val dbSource: LiveData<T> = loadFromDb()
@@ -32,9 +28,7 @@ abstract class NetworkBoundResource<T, V> {
                 fetchFromNetwork(dbSource)
             } else {
                 result.addSource(dbSource) { newData ->
-                    if (null != newData) {
-                        result.value = Resource.success(newData)
-                    }
+                    result.value = Resource.success(newData!!)
                 }
             }
         }
@@ -44,11 +38,8 @@ abstract class NetworkBoundResource<T, V> {
     private fun fetchFromNetwork(dbSource: LiveData<T>) {
 
         result.addSource(dbSource) { newData ->
-            //if (null != newData) {
-                result.value = Resource.loading(newData)
-           // }
+            result.value = Resource.loading(newData!!)
         }
-
         createCall().enqueue(object : Callback<V> {
             override fun onResponse(@NonNull call: Call<V>, @NonNull response: Response<V>) {
                 result.removeSource(dbSource)
@@ -58,9 +49,7 @@ abstract class NetworkBoundResource<T, V> {
             override fun onFailure(@NonNull call: Call<V>, @NonNull t: Throwable) {
                 result.removeSource(dbSource)
                 result.addSource(dbSource) { newData ->
-                    if (null != newData) {
-                        result.value = Resource.error(t.message!!, newData)
-                    }
+                    result.value = Resource.error(t.message!!, newData!!)
                 }
             }
         })
@@ -70,14 +59,12 @@ abstract class NetworkBoundResource<T, V> {
     @SuppressLint("StaticFieldLeak")
     @MainThread
     private fun saveResultAndReInit(response: V) {
-        object : AsyncTask<Void, Void, Void>() {
-
-            override fun doInBackground(vararg voids: Void): Void? {
+        object : AsyncTask<Unit, Unit, Unit>() {
+            override fun doInBackground(vararg p0: Unit?) {
                 saveCallResult(response)
-                return null
             }
 
-            override fun onPostExecute(aVoid: Void) {
+            override fun onPostExecute(avoid: Unit?) {
                 result.addSource(loadFromDb()) { newData ->
                     if (null != newData)
                         result.value = Resource.success(newData)

@@ -3,7 +3,6 @@ package com.example.movieskotlincoroutine.di
 import android.app.Application
 import android.arch.persistence.room.Room
 import com.example.movieskotlincoroutine.ApiConstants
-import com.example.movieskotlincoroutine.database.MovieDao
 import com.example.movieskotlincoroutine.database.UserDao
 import com.example.movieskotlincoroutine.database.UserDatabase
 import com.example.movieskotlincoroutine.network.Webservice
