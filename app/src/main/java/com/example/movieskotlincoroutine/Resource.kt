@@ -7,7 +7,7 @@ class Resource<T> private constructor(
     @param:NonNull @field:NonNull
     val currentState: Status,
     @param:Nullable @field:Nullable
-    val data: T,
+    val data: T?,
     @param:Nullable @field:Nullable
     val message: String?) {
 
@@ -26,7 +26,7 @@ class Resource<T> private constructor(
             return Resource(Status.ERROR, data, message)
         }
 
-        fun <T> loading(@Nullable data: T): Resource<T> {
+        fun <T> loading(@Nullable data: T?): Resource<T> {
             return Resource(Status.LOADING, data, null)
         }
     }

@@ -10,6 +10,7 @@ import com.example.movieskotlincoroutine.UserListViewModel
 import com.example.movieskotlincoroutine.Resource
 import com.example.movieskotlincoroutine.model.User
 import dagger.android.AndroidInjection
+import kotlinx.coroutines.CoroutineScope
 import javax.inject.Inject
 
 
@@ -17,6 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     private var viewModel: UserListViewModel? = null
     private var users: MutableList<User> = arrayListOf()
+   // private var mutableList= mutableListOf<User>() we can initialize like this also
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -41,7 +43,7 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                     Resource.Status.SUCCESS -> {
-                        users.addAll(resource.data)
+                        users.addAll(resource.data!!)
                         Log.d("userList",""+users)
                     }
                     Resource.Status.ERROR -> {

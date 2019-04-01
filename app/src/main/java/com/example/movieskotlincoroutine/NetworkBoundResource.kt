@@ -18,9 +18,8 @@ abstract class NetworkBoundResource<T, V> {
     @MainThread
     constructor() {
 
-        // Always load the data from DB intially so that we have
         val dbSource: LiveData<T> = loadFromDb()
-
+        result.value= Resource.loading(null)
         // Fetch the data from network and add it to the resource
         result.addSource(dbSource) { data ->
             result.removeSource(dbSource)
