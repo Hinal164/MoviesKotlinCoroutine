@@ -4,9 +4,16 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class MainModule {
+class MainModule(private var activity: MainActivity) {
+
     @Provides
-    fun providePresenter(presenter: MainPresenterImpl): MainContractor.Presenter {
-        return presenter
+    fun providePresenter(interactorImpl: MovieInteractor): MainContractor.Presenter {
+        return MainPresenterImpl(activity, interactorImpl)
     }
+
+    @Provides
+    fun providesView(): MainContractor.View {
+        return activity
+    }
+
 }

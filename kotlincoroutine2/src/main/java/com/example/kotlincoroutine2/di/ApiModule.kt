@@ -1,20 +1,16 @@
 package com.example.kotlincoroutine2.di
 
-import android.provider.SyncStateContract
 import com.example.kotlincoroutine2.Utils.Constants
-import com.example.kotlincoroutine2.interactors.remote.ApiInterface
-import com.example.kotlincoroutine2.interactors.remote.MoviesApiServiceImpl
-import com.example.kotlincoroutine2.interactors.remote.WebService
+import com.example.kotlincoroutine2.remote.ApiInterface
+import com.example.kotlincoroutine2.remote.MoviesApiServiceImpl
+import com.example.kotlincoroutine2.remote.WebService
 import com.google.gson.Gson
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import dagger.Module
 import dagger.Provides
-import okhttp3.OkHttpClient
-import retrofit2.CallAdapter
 import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Named
 import javax.inject.Singleton
 
 @Module

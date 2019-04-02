@@ -1,4 +1,4 @@
-package com.example.kotlincoroutine2.interactors.remote
+package com.example.kotlincoroutine2.remote
 
 import com.example.kotlincoroutine2.model.Movie
 import com.example.kotlincoroutine2.model.TmpMovies

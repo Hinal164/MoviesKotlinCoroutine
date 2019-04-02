@@ -1,4 +1,4 @@
-package com.example.kotlincoroutine2.interactors.remote
+package com.example.kotlincoroutine2.remote
 
 import retrofit2.Response
 import java.lang.Exception

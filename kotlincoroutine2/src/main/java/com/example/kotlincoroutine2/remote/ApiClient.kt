@@ -1,4 +1,4 @@
-package com.example.kotlincoroutine2.interactors.remote
+package com.example.kotlincoroutine2.remote
 
 import com.example.kotlincoroutine2.Utils.Constants
 import okhttp3.OkHttpClient
@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class ApiClient {
 
     companion object {
-        var retrofit:ApiInterface? =null
+        var retrofit: ApiInterface? =null
 
         fun getClient(): ApiInterface {
             if (retrofit == null) {

@@ -1,4 +1,4 @@
-package com.example.kotlincoroutine2.interactors.remote
+package com.example.kotlincoroutine2.remote
 
 import com.example.kotlincoroutine2.model.Movie
 import com.example.kotlincoroutine2.model.TmpMovies
@@ -10,9 +10,9 @@ import retrofit2.http.Query
 interface ApiInterface {
     //http://moviesapi.ir/api/v1/movies?q=[QUERY]
     @GET("movies")
-    fun getMoviesByTitle(@Query("q") query: String, @Query("page") page: Int?): Deferred<TmpMovies>
+    fun getMoviesByTitleAsync(@Query("q") query: String, @Query("page") page: Int?): Deferred<TmpMovies>
 
     //http://moviesapi.ir/api/v1/movies/{ID}
     @GET("movies/{id}")
-    fun getMovieById(@Path("id") id: String): Deferred<Movie>
+    fun getMovieByIdAsync(@Path("id") id: String): Deferred<Movie>
 }

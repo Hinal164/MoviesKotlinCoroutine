@@ -1,10 +1,14 @@
 package com.example.kotlincoroutine2.di
 
 import android.app.Application
+import com.example.kotlincoroutine2.BuildConfig
+import com.example.kotlincoroutine2.Utils.Constants
 import com.example.kotlincoroutine2.Utils.DispatcherProvider
 import com.example.kotlincoroutine2.Utils.DispatcherProviderImpl
 import dagger.Binds
 import dagger.Module
+import dagger.Provides
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module

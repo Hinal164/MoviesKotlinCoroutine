@@ -7,8 +7,8 @@ import com.example.kotlincoroutine2.di.DaggerAppComponent
 class App : Application() {
 
     companion object {
-        private var component: AppComponent? = null
-        fun getComponent(): AppComponent? {
+        private lateinit var component: AppComponent
+        fun getComponent(): AppComponent {
             return component
         }
     }

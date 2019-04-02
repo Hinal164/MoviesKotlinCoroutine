@@ -1,4 +1,4 @@
-package com.example.kotlincoroutine2.interactors.remote
+package com.example.kotlincoroutine2.remote
 
 import com.example.kotlincoroutine2.model.Movie
 import com.example.kotlincoroutine2.model.TmpMovies
@@ -8,11 +8,11 @@ import java.io.IOException
 
 class MoviesApiServiceImpl (private val api: ApiInterface) : WebService {
     override suspend fun getMoviesByTitle(query: String, page: Int?): TmpMovies {
-        return api.getMoviesByTitle(query, page).awaitWithParseError()
+        return api.getMoviesByTitleAsync(query, page).awaitWithParseError()
     }
 
     override suspend fun getMovieById(id: String): Movie {
-        return api.getMovieById(id).awaitWithParseError()
+        return api.getMovieByIdAsync(id).awaitWithParseError()
     }
 
     private suspend fun <R> Deferred<R>.awaitWithParseError(): R {
