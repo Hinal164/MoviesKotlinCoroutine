@@ -15,11 +15,12 @@ class MainPresenterImpl
 
     private val compositeDisposable = mutableListOf<Job>()
 
-    override fun onLoadMoviesByTitle(title: String, page: Int) = runBlocking<Unit> {
+    override fun onLoadMoviesByTitle(title: String, page: Int, isReload: Boolean) = runBlocking<Unit> {
         val job = launch {
             try {
                 val movies = interactor.getMoviesByTitle(title, page)
-                view.showMoreMovies(movies)
+                view.showMoreMovies(movies,isReload)
+
             } catch (e: Exception) {
                 when (e) {
                     is HttpException -> Log.d("TAG", "onError StatusCode: " + e.code())

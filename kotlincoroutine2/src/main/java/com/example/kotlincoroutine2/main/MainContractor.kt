@@ -8,17 +8,19 @@ import com.example.kotlincoroutine2.model.Movie
 interface MainContractor {
 
     interface View : IView<Presenter> {
-        fun showMoreMovies(movies: List<Movie>)
-
+        fun showMoreMovies(
+            movies: List<Movie>,
+            isReload: Boolean
+        )
     }
 
-    interface Interactor : IBaseInteractor{
+    interface Interactor : IBaseInteractor {
         suspend fun getMoviesByTitle(title: String, page: Int?): List<Movie>
     }
 
     interface Presenter : IPresenter<View> {
 
-        fun onLoadMoviesByTitle(title: String, page: Int)
+        fun onLoadMoviesByTitle(title: String, page: Int, isReload: Boolean)
 
     }
 }
